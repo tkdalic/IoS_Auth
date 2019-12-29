@@ -1,0 +1,8 @@
+{
+  "name": "IoS_Auth",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:tkdalic/IoS_Auth.git",
+  "author": "tkdalic <himagami126@gmail.com>",
+  "license": "MIT"
+}
