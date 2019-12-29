@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "fix": "prettier src/**/* && eslint --ext .js,.jsx,.ts,.tsx src --fix",
     "test": "jest"
   },
   "dependencies": {
