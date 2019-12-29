@@ -6,7 +6,11 @@
   "author": "tkdalic <himagami126@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.3.5"
   }
 }
