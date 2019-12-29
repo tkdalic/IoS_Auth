@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "git@github.com:tkdalic/IoS_Auth.git",
   "author": "tkdalic <himagami126@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  }
 }
