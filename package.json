@@ -5,6 +5,11 @@
   "repository": "git@github.com:tkdalic/IoS_Auth.git",
   "author": "tkdalic <himagami126@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "test": "jest"
+  },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
     "typescript": "^3.7.4"
