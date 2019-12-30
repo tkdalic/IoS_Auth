@@ -1,7 +1,7 @@
 import { createServer } from "http";
-import { requestHandler } from "./Handler/handler";
-import { HttpRequest } from "./Handler/HttpRequest";
-import { HttpResponse } from "./Handler/HttpResponse";
+import { requestHandler } from "./framework/handler/handler";
+import { HttpRequest } from "./framework/handler/HttpRequest";
+import { HttpResponse } from "./framework/handler/HttpResponse";
 
 const handler = (req: HttpRequest): HttpResponse => ({
     status: 200,
