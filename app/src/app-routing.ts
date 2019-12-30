@@ -4,8 +4,8 @@ import { getKey } from "./controllers/getKey";
 
 const notFoundResponse = {
   status: 404,
-  headers: { "Content-Type": "application/json" },
-  body: ""
+  headers: { "Content-Type": "text/plain" },
+  body: 'not found'
 };
 
 function getRouting(req: HttpRequest): HttpResponse {
