@@ -1,3 +1,3 @@
-import { app } from './index';
+import { app } from "./index";
 
-test('app test', () => expect(app).toBeTruthy());
+test("app test", () => expect(app).toBeTruthy());

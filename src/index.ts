@@ -1,5 +1,4 @@
 import { createServer } from "http";
-import { requestHandler } from './handler';
+import { requestHandler } from "./Handler/handler";
 
-
-export const app = createServer(requestHandler).listen(8080);
+export const app = createServer(requestHandler({})).listen(8080);
