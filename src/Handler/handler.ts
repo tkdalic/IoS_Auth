@@ -30,19 +30,17 @@ function sendResponse(res: ServerResponse, response: HttpResponse): void {
   res.end();
 }
 
-export function requestHandler(routingTable: {
-  [key: string]: (req: HttpRequest) => HttpResponse;
-}): (req: IncomingMessage, res: ServerResponse) => void {
-  let request: HttpRequest;
+export function requestHandler(
+  handler: (req: HttpRequest) => HttpResponse
+): (req: IncomingMessage, res: ServerResponse) => void {
+  let request: HttpRequest, response: HttpResponse;
   return (req, res): void => {
     req
-      .on("data", chunk => (request = makeHttpRequest(req, chunk)))
-      .on("end", () =>
-        sendResponse(res, {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-          body: '{"hoge": "huga"}'
-        })
-      );
+      .on("data", chunk => {
+        request = makeHttpRequest(req, chunk);
+
+        response = handler(request);
+      })
+      .on("end", () => sendResponse(res, response));
   };
 }
