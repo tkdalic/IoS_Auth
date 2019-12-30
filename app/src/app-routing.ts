@@ -10,7 +10,7 @@ const notFoundResponse = {
 
 function getRouting(req: HttpRequest): HttpResponse {
   switch (req.url) {
-    case "key":
+    case "/key":
       return getKey(req);
   }
   return notFoundResponse;

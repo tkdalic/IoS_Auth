@@ -33,14 +33,15 @@ function sendResponse(res: ServerResponse, response: HttpResponse): void {
 export function requestHandler(
   handler: (req: HttpRequest) => HttpResponse
 ): (req: IncomingMessage, res: ServerResponse) => void {
-  let request: HttpRequest, response: HttpResponse;
+  let data = '';
   return (req, res): void => {
     req
-      .on("data", chunk => {
-        request = makeHttpRequest(req, chunk);
+      .on("data", chunk => data += chunk)
+      .on("end", () => {
+        const request = makeHttpRequest(req, data);
 
-        response = handler(request);
-      })
-      .on("end", () => sendResponse(res, response));
+        const response = handler(request);
+        sendResponse(res, response);
+      });
   };
 }
