@@ -1,6 +1,6 @@
 import { HttpRequest } from "../framework/handler/HttpRequest";
 import { HttpResponse } from "../framework/handler/HttpResponse";
-import { getPublicKey } from "../rsa";
+import { getPublicKey } from "../domain/rsa";
 
 export function getKey(req: HttpRequest): HttpResponse {
   return {
