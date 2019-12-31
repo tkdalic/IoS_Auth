@@ -36,7 +36,10 @@ export function requestHandler(
   let data = '';
   return (req, res): void => {
     req
-      .on("data", chunk => data += chunk)
+      .on("data", chunk => {
+        data = '';
+        data += chunk;
+      })
       .on("end", () => {
         const request = makeHttpRequest(req, data);
 
