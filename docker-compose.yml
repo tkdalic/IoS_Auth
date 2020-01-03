@@ -1,15 +1,22 @@
-version: '3'
+version: "3"
 
 services:
   auth:
-    image: 'node'
+    image: "node"
     volumes:
       - ./app:/app
     working_dir: /app
-    command: 'yarn start'
+    command: "yarn start"
     ports:
-      - 8080:8080
+      - 5050:8080
+    networks:
+      - backend
   redis:
-    image: 'redis'
+    image: "redis"
     ports:
       - 6379:6379
+    networks:
+      - backend
+
+networks: 
+  backend:
