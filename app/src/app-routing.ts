@@ -1,7 +1,7 @@
 import { HttpRequest } from "./framework/handler/HttpRequest";
 import { HttpResponse } from "./framework/handler/HttpResponse";
 import { getKey } from "./controllers/getKey";
-import { generateJWT } from "./controllers/generateJWT";
+import { signUp } from "./controllers/signUp";
 
 const notFoundResponse = {
   status: 404,
@@ -20,7 +20,7 @@ function getRouting(req: HttpRequest): HttpResponse {
 function postRouting(req: HttpRequest): HttpResponse {
   switch (req.url) {
     case "/jwt":
-      return generateJWT(req);
+      return signUp(req);
   }
   return notFoundResponse;
 }

@@ -22,7 +22,7 @@ function validateBody(body: any): body is GenerateJWTRequestBody {
     return true;
 }
 
-export function generateJWT(req: HttpRequest): HttpResponse {
+export function signUp(req: HttpRequest): HttpResponse {
     if (!validateBody(req.body)) {
         return {
             status: 400,
