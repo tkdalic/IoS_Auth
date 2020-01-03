@@ -9,6 +9,10 @@ export function getAccount(key: string): Promise<string> {
     return redis.get(key);
 }
 
-export function setAccount(key: string, value: string): Promise<void> {
-    return redis.set(key, value);
+export async function setAccount(key: string, value: string): Promise<boolean> {
+    if (await redis.get(key)) {
+        await redis.set(key, value);
+    }
+
+    return await redis.get(key) === value;
 }
