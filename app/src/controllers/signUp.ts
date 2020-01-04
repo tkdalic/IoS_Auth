@@ -1,5 +1,7 @@
 import { HttpRequest } from "../framework/handler/HttpRequest";
 import { HttpResponse } from "../framework/handler/HttpResponse";
+import { getAccount, setAccount } from "../domain/account";
+import { makeJWT } from "../domain/jwt";
 
 interface GenerateJWTRequestBody {
     id: string;
@@ -22,7 +24,7 @@ function validateBody(body: any): body is GenerateJWTRequestBody {
     return true;
 }
 
-export function signUp(req: HttpRequest): HttpResponse {
+export async function signUp(req: HttpRequest): Promise<HttpResponse> {
     if (!validateBody(req.body)) {
         return {
             status: 400,
@@ -30,10 +32,18 @@ export function signUp(req: HttpRequest): HttpResponse {
             body: JSON.stringify({ message: 'bad request' })
         };
     }
+    if (await getAccount(req.body.id)) {
+        return {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: 'duplicate id' })
+        };
+    }
+    await setAccount(req.body.id, req.body.password);
     return {
         status: 200,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: 'test' })
+        body: JSON.stringify({'jwt': makeJWT({ 'id': req.body.id })})
     };
 }
 
