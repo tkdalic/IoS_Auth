@@ -3,11 +3,30 @@ import { HttpRequest } from "./HttpRequest";
 import { HttpResponse } from "./HttpResponse";
 
 function makeHttpRequest(req: IncomingMessage, chunk: string): HttpRequest {
+  const urlQuery = req.url?.split('?') || [];
+
+  let queryObject: { [key: string]: string } = {};
+  const url = urlQuery[0];
+  
+  if (urlQuery.length > 1) {
+    urlQuery[1].split('&')?.forEach(query => {
+      const keyValue = query.split('=', 2);
+      
+      if (keyValue.length === 2) {
+        queryObject[keyValue[0]] = keyValue[1];
+      }
+    });
+  }
+
   const request: HttpRequest = {
     method: req.method || "GET",
-    url: req.url || "",
-    headers: req.headers
+    url: url || "",
+    headers: req.headers,
   };
+
+  if (queryObject) {
+    request.query = queryObject;
+  }
 
   if (chunk && (request.method === "POST" || request.method === "PUT")) {
     request.body = "";
@@ -44,6 +63,6 @@ export function requestHandler(
         const request = makeHttpRequest(req, data);
 
         handler(request).then(response => sendResponse(res, response));
-  });
-};
+      });
+  };
 }
