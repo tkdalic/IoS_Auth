@@ -19,7 +19,7 @@ async function getRouting(req: HttpRequest): Promise<HttpResponse> {
 
 async function postRouting(req: HttpRequest): Promise<HttpResponse> {
   switch (req.url) {
-    case "/signUp":
+    case "/signup":
       return signUp(req);
   }
   return notFoundResponse;
