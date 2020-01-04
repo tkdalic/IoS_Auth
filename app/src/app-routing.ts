@@ -3,6 +3,7 @@ import { HttpResponse } from "./framework/handler/HttpResponse";
 import { getKey } from "./controllers/getKey";
 import { signUp } from "./controllers/signUp";
 import { signIn } from "./controllers/signIn";
+import { verifyToken } from "./controllers/verifyToken";
 
 const notFoundResponse = {
   status: 404,
@@ -14,6 +15,8 @@ async function getRouting(req: HttpRequest): Promise<HttpResponse> {
   switch (req.url) {
     case "/key":
       return getKey(req);
+    case "/verify":
+      return verifyToken(req);
   }
   return notFoundResponse;
 }
