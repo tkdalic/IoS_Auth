@@ -2,6 +2,7 @@ import { HttpRequest } from "./framework/handler/HttpRequest";
 import { HttpResponse } from "./framework/handler/HttpResponse";
 import { getKey } from "./controllers/getKey";
 import { signUp } from "./controllers/signUp";
+import { signIn } from "./controllers/signIn";
 
 const notFoundResponse = {
   status: 404,
@@ -19,6 +20,8 @@ async function getRouting(req: HttpRequest): Promise<HttpResponse> {
 
 async function postRouting(req: HttpRequest): Promise<HttpResponse> {
   switch (req.url) {
+    case "/signin":
+      return signIn(req);
     case "/signup":
       return signUp(req);
   }
