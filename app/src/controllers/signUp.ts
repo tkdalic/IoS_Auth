@@ -2,6 +2,7 @@ import { HttpRequest } from "../framework/handler/HttpRequest";
 import { HttpResponse } from "../framework/handler/HttpResponse";
 import { getAccount, setAccount } from "../domain/account";
 import { makeJWT } from "../domain/jwt";
+import { hash } from "../domain/passwordHash";
 
 interface GenerateJWTRequestBody {
     id: string;
@@ -39,7 +40,7 @@ export async function signUp(req: HttpRequest): Promise<HttpResponse> {
             body: JSON.stringify({ message: 'duplicate id' })
         };
     }
-    await setAccount(req.body.id, req.body.password);
+    await setAccount(req.body.id, hash(req.body.password));
     return {
         status: 200,
         headers: { "Content-Type": "application/json" },
