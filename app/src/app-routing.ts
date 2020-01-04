@@ -9,7 +9,7 @@ const notFoundResponse = {
   body: 'not found'
 };
 
-function getRouting(req: HttpRequest): HttpResponse {
+async function getRouting(req: HttpRequest): Promise<HttpResponse> {
   switch (req.url) {
     case "/key":
       return getKey(req);
@@ -17,15 +17,15 @@ function getRouting(req: HttpRequest): HttpResponse {
   return notFoundResponse;
 }
 
-function postRouting(req: HttpRequest): HttpResponse {
+async function postRouting(req: HttpRequest): Promise<HttpResponse> {
   switch (req.url) {
-    case "/jwt":
+    case "/signUp":
       return signUp(req);
   }
   return notFoundResponse;
 }
 
-export function routing(req: HttpRequest): HttpResponse {
+export async function routing(req: HttpRequest): Promise<HttpResponse> {
   switch (req.method) {
     case "GET":
       return getRouting(req);

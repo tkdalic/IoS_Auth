@@ -4,7 +4,7 @@ import { Socket } from "net";
 import { HttpRequest } from "./HttpRequest";
 import { HttpResponse } from "./HttpResponse";
 
-const handler = (req: HttpRequest): HttpResponse => ({
+const handler = async (req: HttpRequest): Promise<HttpResponse> => ({
   status: 200,
   headers: { "Content-Type": "application/json" },
   body: '{"hoge": "huga"}'

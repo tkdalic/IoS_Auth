@@ -1,7 +1,7 @@
 import { Redis } from "../framework/kvs/redis";
 
 const redis = new Redis({
-    host: 'localhost',
+    host: 'redis',
     port: 6379,
 });
 

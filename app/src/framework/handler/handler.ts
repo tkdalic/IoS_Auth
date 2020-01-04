@@ -31,7 +31,7 @@ function sendResponse(res: ServerResponse, response: HttpResponse): void {
 }
 
 export function requestHandler(
-  handler: (req: HttpRequest) => HttpResponse
+  handler: (req: HttpRequest) => Promise<HttpResponse>
 ): (req: IncomingMessage, res: ServerResponse) => void {
   let data = '';
   return (req, res): void => {
@@ -43,8 +43,7 @@ export function requestHandler(
       .on("end", () => {
         const request = makeHttpRequest(req, data);
 
-        const response = handler(request);
-        sendResponse(res, response);
-      });
-  };
+        handler(request).then(response => sendResponse(res, response));
+  });
+};
 }
