@@ -34,7 +34,7 @@ export async function signIn(req: HttpRequest): Promise<HttpResponse> {
         };
     }
     const passwordHash = await getAccount(req.body.id);
-    if (!verify(req.body.password, passwordHash)) {
+    if (!passwordHash || !verify(req.body.password, passwordHash)) {
         return {
             status: 400,
             headers: { "Content-Type": "application/json" },
