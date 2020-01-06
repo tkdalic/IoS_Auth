@@ -6,7 +6,7 @@ services:
     volumes:
       - ./app:/app
     working_dir: /app
-    command: "yarn start"
+    command: "bash -c 'yarn && yarn start'"
     ports:
       - 5050:8080
     networks:
