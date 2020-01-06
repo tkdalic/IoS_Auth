@@ -10,8 +10,6 @@ interface VerifyRequestBody {
 }
 
 function validateBody(query: any): query is VerifyRequestBody {
-    console.log(query);
-    
     if (typeof query.jwt !== 'string') {
         return false;
     }
